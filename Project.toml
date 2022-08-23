@@ -1,0 +1,8 @@
+name = "MetaPSE"
+uuid = "3217e31c-4f76-4d68-b1d0-d6de4d736e79"
+authors = ["Mingtao Li <mingtao@xjtu.edu.cn>"]
+version = "0.1.0"
+
+[deps]
+ModelingToolkit = "961ee093-0014-501f-94e3-6117800e7a78"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
