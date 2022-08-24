@@ -511,3 +511,76 @@ Base.@kwdef struct Model
     annotation::Maybe{String} = nothing
 end
 
+
+#= 
+const prefixdict = Dict(
+    -24 => "y", #yocto
+    -21 => "z", #zepto
+    -18 => "a", #atto
+    -15 => "f", #femto
+    -12 => "p", #pico
+    -9  => "n", #nano
+    -6  => "μ", #micro
+    -3  => "m", #milli
+    -2  => "c", #centi
+    -1  => "d", #deci
+    0   => "", #
+    1   => "da", #deka
+    2   => "h", #hecto
+    3   => "k", #kilo
+    6   => "M", #mega
+    9   => "G", #giga
+    12  => "T", #tera
+    15  => "P", #peta
+    18  => "E", #exa
+    21  => "Z", #zetta
+    24  => "Y", #yotta
+) =#
+Base.@kwdef struct PSEVariable
+    name::Symbol
+    unit::PSEUnit
+    defaultValue::Float64
+    MinValue::Float64
+    MaxValue::Float64
+#=     """
+    mktvar
+    """
+    mtkvar =#
+end
+
+
+Base.@kwdef struct PSEParameter
+    name::Symbol
+    unit::metaPSEUnit #用以从UNITFUL_KIND_STRING字典里查取对应的国际单位制标准单位
+    defaultValue::Float64
+    MinValue::Float64
+    MaxValue::Float64
+    """
+    mktvar
+    """
+    mtkvar
+end
+
+Base.@kwdef struct PSEquation
+    name::Symbol
+    unit::metaPSEUnit #用以从UNITFUL_KIND_STRING字典里查取对应的国际单位制标准单位
+    defaultValue::Float64
+    MinValue::Float64
+    MaxValue::Float64
+    """
+    mktvar
+    """
+    mtkvar
+end
+Base.@kwdef struct PSEComponent
+    name::Symbol
+    unit::metaPSEUnit #用以从UNITFUL_KIND_STRING字典里查取对应的国际单位制标准单位
+    defaultValue::Float64
+    MinValue::Float64
+    MaxValue::Float64
+    """
+    mktvar
+    """
+    mtkvar
+end
+

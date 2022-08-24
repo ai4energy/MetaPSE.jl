@@ -1,36 +1,73 @@
 """
-SI unit definitions
+units definitions
 
 reference:
-    Modelica.Units.SI
+    Modelica.Units
 """
+module PSEUnit
+import Unitful
+using Unitful: @unit
 
-#= 
-const prefixdict = Dict(
-    -24 => "y", #yocto
-    -21 => "z", #zepto
-    -18 => "a", #atto
-    -15 => "f", #femto
-    -12 => "p", #pico
-    -9  => "n", #nano
-    -6  => "μ", #micro
-    -3  => "m", #milli
-    -2  => "c", #centi
-    -1  => "d", #deci
-    0   => "", #
-    1   => "da", #deka
-    2   => "h", #hecto
-    3   => "k", #kilo
-    6   => "M", #mega
-    9   => "G", #giga
-    12  => "T", #tera
-    15  => "P", #peta
-    18  => "E", #exa
-    21  => "Z", #zetta
-    24  => "Y", #yotta
-) =#
 
-const BASE_UNIT_STRING = Dict(
+
+end
+
+
+@unit AU         "AU"       AstronomicalUnit          149_597_870_700.0*m       false
+
+@unit sft_us      "ftˢ"       USSurveyFoot      12sinch_us              false
+@unit sli_us      "liˢ"       USSurveyLink      (33//50)sft_us          false
+@unit syd_us      "ydˢ"       USSurveyYard      3sft_us                 false
+@unit srd_us      "rdˢ"       USSurveyRod       25sli_us                false
+@unit sch_us      "chˢ"       USSurveyChain     4srd_us                 false
+@unit sfur_us     "furˢ"      USSurveyFurlong   10sch_us                false
+@unit smi_us      "miˢ"       USSurveyMile      8sfur_us                false
+@unit slea_us     "leaˢ"      USSurveyLeague    3smi_us                 false
+
+# Survey areas
+@unit sac_us      "acˢ"       USSurveyAcre      43560sft_us^2           false
+@unit town_us     "township"  USSurveyTownship  36smi_us^2              false
+
+# Dry volumes
+# Exact but the fraction is awful; will fix later
+@unit drypt_us    "dryptᵘˢ"   USDryPint   550.6104713575*Unitful.ml     false
+@unit dryqt_us    "dryqtᵘˢ"   USDryQuart        2drypt_us               false
+@unit pk_us       "pkᵘˢ"      USPeck            8dryqt_us               false
+@unit bushel_us   "buᵘˢ"      USBushel          4pk_us                  false
+
+# Liquid volumes
+@unit gal_us      "galᵘˢ"     USGallon          231*(Unitful.inch)^3    false
+@unit qt_us       "qtᵘˢ"      USQuart           gal_us//4               false
+@unit pt_us       "ptᵘˢ"      USPint            qt_us//2                false
+@unit cup_us      "cupᵘˢ"     USCup             pt_us//2                false
+@unit gill_us     "gillᵘˢ"    USGill            cup_us//2               false
+@unit floz_us     "fl ozᵘˢ"   USFluidOunce      pt_us//16               false
+@unit tbsp_us     "tbspᵘˢ"    USTablespoon      floz_us//2              false
+@unit tsp_us      "tspᵘˢ"     USTeaspoon        tbsp_us//3              false
+@unit fldr_us     "fl drᵘˢ"   USFluidDram       floz_us//8              false
+@unit minim_us    "minimᵘˢ"   USMinim           fldr_us//60             false
+const localunits = Unitful.basefactors
+function __init__()
+    merge!(Unitful.basefactors, localunits)
+    Unitful.register(UnitfulUS)
+end
+const Angle=PSEUnit(:Angle,"radian",1,1,1,"radian")
+const SolidAngle=PSEUnit(:SolidAngle,"steradian",1,1,1,"steradian")
+const Length=PSEUnit(:Length,"meter",1,1,1,"meter")
+const PathLength=PSEUnit(:PathLength,"meter",1,1,1,"meter")
+const Position=PSEUnit(:Position,"meter",1,1,1,"meter")
+const Distance=PSEUnit(:Distance,"meter",1,1,1,"meter")
+const Breadth=PSEUnit(:Breadth,"meter",1,1,1,"meter")
+const Height=PSEUnit(:Height,"meter",1,1,1,"meter")
+const Thickness=PSEUnit(:Thickness,"meter",1,1,1,"meter")
+const Radius=PSEUnit(:Radius,"meter",1,1,1,"meter")
+const Diameter=PSEUnit(:Diameter,"meter",1,1,1,"meter")
+const Area=PSEUnit(:Area,"meter",2,1,1,"m^2")
+const Volume=PSEUnit(:Volume,"meter",3,1,1,"m^3")
+
+
+
+const BASE_UNIT= Dict(
 
 #base unit
     "dimensionless" => 1,
@@ -57,39 +94,28 @@ const BASE_UNIT_STRING = Dict(
 
 
 #Length related
+
 #Volumn
+
 #Energy
+
 #Electromagnetism
+
 #Pressure
+
 #Viscosity
 
 #Radioactivity
+
 #Optics
+
 #Catalytic Activity
 
-
-"newton" => 1.0 * u"N",
-    "nounit" => 1, # UNIT_SI_NOUNIT
-    "item" => 1, # UNIT_SI_ITEM
-
-    "volt" => 1.0 * u"V", # UNIT_SI_VOLT
-    "Celsius" => 1.0 * u"°C", # UNIT_SI_CELSIUS
-    "coulomb" => 1.0 * u"C", # UNIT_SI_COULOMB
- # UNIT_SI_HERTZ
-    "joule" => 1.0 * u"J", # UNIT_SI_JOULE
-    
-
-    "ohm" => 1.0 * u"Ω", # UNIT_SI_OHM
-    "pascal" => 1.0 * u"Pa", # UNIT_SI_PASCAL
-
-
-
-    "farad" => 1.0 * u"F", # UNIT_SI_FARAD
- # UNIT_SI_GRAM
-    "liter" => 1.0 * u"L", # UNIT_SI_LITER
-    "watt" => 1.0 * u"W", # UNIT_SI_WATT
-    "timeday" => 1.0 * u"d", 
 )
+
+
+
+
 
 """
 单位定义，很多量都有单位。
@@ -109,72 +135,11 @@ built from multiple `UnitPart`s.  See also [`SBML.UnitDefinition`](@ref).
 """
 Base.@kwdef struct PSEUnit
     name::Symbol
-    baseunitstring::String #用以从BASE_UNIT_STRING字典里查取基本单位
+    baseunitstring::String #用以从BASE_UNIT字典里查取基本单位
     exponent::Int
     scale::Int
     multiplier::Float64
     annotation::Maybe{String}
 end
 
-const Current=Unit(:Current,"ampere",1,1,1,"amper")
-const Current=Unit(:Current,"ampere",1,1,1)
-const Current=Unit(:Current,"ampere",1,1,1)
-const Current=Unit(:Current,"ampere",1,1,1)
-const Current=Unit(:Current,"ampere",1,1,1)
-const Current=Unit(:Current,"ampere",1,1,1)
-const Current=Unit(:Current,"ampere",1,1,1)
-const Current=Unit(:Current,"ampere",1,1,1)
-const Current=Unit(:Current,"ampere",1,1,1)
-const Current=Unit(:Current,"ampere",1,1,1)
 
-Base.@kwdef struct PSEVariable
-    name::Symbol
-    unit::Unit #用以从UNITFUL_KIND_STRING字典里查取对应的国际单位制标准单位
-    defaultValue::Float64
-    MinValue::Float64
-    MaxValue::Float64
-    """
-    mktvar
-    """
-    mtkvar
-end
-
-
-Base.@kwdef struct PSEParameter
-    name::Symbol
-    unit::metaPSEUnit #用以从UNITFUL_KIND_STRING字典里查取对应的国际单位制标准单位
-    defaultValue::Float64
-    MinValue::Float64
-    MaxValue::Float64
-    """
-    mktvar
-    """
-    mtkvar
-end
-
-Base.@kwdef struct PSEquation
-    name::Symbol
-    unit::metaPSEUnit #用以从UNITFUL_KIND_STRING字典里查取对应的国际单位制标准单位
-    defaultValue::Float64
-    MinValue::Float64
-    MaxValue::Float64
-    """
-    mktvar
-    """
-    mtkvar
-end
-Base.@kwdef struct PSEComponent
-    name::Symbol
-    unit::metaPSEUnit #用以从UNITFUL_KIND_STRING字典里查取对应的国际单位制标准单位
-    defaultValue::Float64
-    MinValue::Float64
-    MaxValue::Float64
-    """
-    mktvar
-    """
-    mtkvar
-end
-
-
-
-abc=metaPSEUnit(:abc,Current,1.0,0.0,10.0)
