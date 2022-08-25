@@ -1,5 +1,4 @@
-using .PSEUnits
-using Unitful
+
 
 Base.@kwdef struct PSEVariable
     name::Symbol
@@ -12,5 +11,14 @@ Base.@kwdef struct PSEVariable
     #mktvarsym
 end
 
-abc=PSEVariable(:abc,PSEUnits.kilomole_per_cubic_metre,1.0, 0.0, 5.0, 2.0)
+#abc=PSEVariable(:abc,PSEUnits.kilomole_per_cubic_metre,1.0, 0.0, 5.0, 2.0)
 
+
+struct PSEVvv{unit,defaultvalue,Lowerboundry,Upboundry} 
+    name::Symbol
+    function PSEVvv{unit,defaultvalue,Lowerboundry,Upboundry}(name::Symbol) where {unit,defaultvalue,Lowerboundry,Upboundry}
+
+        new{unit,defaultvalue,Lowerboundry,Upboundry}(name)
+    end
+
+end

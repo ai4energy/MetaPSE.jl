@@ -1,4 +1,4 @@
-"""
+#= """
 units definitions
 
 reference:
@@ -7,7 +7,7 @@ reference:
     SBML.jl src/unitful.jl
     gPROMS Unit
 """
-module PSEUnits
+ =#
 import Unitful
 using Unitful: @unit, @u_str
 #using Unitful: @derived_dimension, @dimension, @refunit, @u_str, @unit, Quantity, uconvert
@@ -51,11 +51,10 @@ using Unitful: @unit, @u_str
 @unit kilomole_per_cubic_metre "kmol/m^3" kilomole_per_cubic_metre 1.0 * u"kmol/m^3" true
 
 
-const localunits = Unitful.basefactors
+#= const localunits = Unitful.basefactors
 function __init__()
     merge!(Unitful.basefactors, localunits)
     Unitful.register(PSEUnits)
 end
+ =#
 
-
-end
