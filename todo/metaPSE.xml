@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaPSEproject>
+    <include></include>
+    <unitdefinition>
+        <unit></unit>
+    </unitdefinition>
+    <system>
+        <variables>
+            <variable></variable>
+        </variables>
+        <component>
+            <variables>
+                <variable></variable>
+            </variables>
+        </component>
+        <ports></ports>
+        <connects></connects>
+    </system>
+    <tasks>
+        <simulation></simulation>
+        <paraestimation></paraestimation>
+        <optimization></optimization>
+        <control></control>
+    </tasks>
+</metaPSEproject>

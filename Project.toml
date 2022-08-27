@@ -5,4 +5,7 @@ version = "0.1.0"
 
 [deps]
 ModelingToolkit = "961ee093-0014-501f-94e3-6117800e7a78"
+PowerSimulations = "e690365d-45e2-57bb-ac84-44ba829e73c4"
+PowerSystems = "bcd98974-b02a-5e2f-9ee0-a103f5c450dd"
+SymbolicUtils = "d1185830-fcd6-423d-90d6-eec64667417b"
 Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
