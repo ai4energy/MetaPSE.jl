@@ -10,6 +10,7 @@ end
 
 velocity=Velocity("m/s",1.0,5.0,2.0)
 
+
 struct Variable{T}
     variabletype::T
     sym::Symbol
@@ -17,6 +18,7 @@ struct Variable{T}
         new{T}(variabletype,name)
     end        
 end
+
 
 Variable(variabletype,name) where {T} = Variable{typeof(variabletype)}(variabletype,name)
 
@@ -26,7 +28,11 @@ Variable(variabletype,name) where {T} = Variable{typeof(variabletype)}(variablet
 
 Variable(velocity,:v)
 
+# 最好做两个宏
 
+# @variabletype("velocity",unit, low, up, default)产生一个类型和一个类型的实例
+
+# @variable(type,name)产生一个类型的变量和实例
 
 Base.@kwdef struct PSEVariable
     name::Symbol
