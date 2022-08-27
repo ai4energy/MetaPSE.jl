@@ -1,16 +1,14 @@
 
 abstract type AbstractVariableType end
-
-struct Velocity <: AbstractVariableType
+struct VelocityType <: AbstractVariableType
     unit
     low
     up
-    defautvalue    
+    defautvalue
+    function VelocityType()
+        new("m/s",1.0, 5.0, 2.0)        
+    end    
 end
-
-velocity=Velocity("m/s",1.0,5.0,2.0)
-
-
 struct Variable{T}
     variabletype::T
     sym::Symbol
@@ -20,8 +18,13 @@ struct Variable{T}
 end
 
 
-Variable(variabletype,name) where {T} = Variable{typeof(variabletype)}(variabletype,name)
 
+Variable(variabletype,name) = Variable{typeof(variabletype)}(variabletype,name)
+
+velocitytype=VelocityType()
+Variable(velocitytype,:abcd)
+
+Variable(VelocityType(),:abd)
 
 #Variable{T}(variabletype,name) where {T}=new{T}(typeof(variabletype),name)
 
