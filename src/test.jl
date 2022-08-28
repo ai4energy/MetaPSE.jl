@@ -396,3 +396,26 @@ Base.@kwdef struct PSEComponent
     mtkvar
 end
 
+
+
+######################################################
+#https://discourse.julialang.org/t/implementing-singleton-design-pattern/61704/3
+######################################################
+mutable struct Repository
+    x::Int
+    y::Int
+    rep
+
+
+   function Repository(x,y)
+      # may need atomic access or a lock to make writing threadsafe
+      if !isdefind(REPOSITORY, 1) 
+          REPOSITORY[] = new(x,y,[0])
+      end
+      REPOSITORY[]
+   end
+end
+const REPOSITORY = Base.RefValue{Repository}()
+
+
+######################################################
