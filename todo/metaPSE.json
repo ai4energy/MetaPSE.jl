@@ -1,0 +1,29 @@
+{
+    "unit_definition": [
+        {
+            "symbolic": "dimless",
+            "unit_name": "DimLess",
+            "quantity": "NoUnits",
+            "display_unit": "",
+            "extension_with_prefix": "false"
+        },
+        {
+            "symbolic": "kilomole_per_cubic_metre",
+            "unit_name": "kilomole_per_cubic_metre",
+            "quantity": "1.0 * u\"kmol/m^3\"",
+            "display_unit": "kmol/m^3",
+            "extension_with_prefix": false
+        }
+    ],
+    "vartype_definition": [
+        {
+            "vartype_name": "VelocityType",
+            "default_value": "0.0",
+            "minv_alue": "5.0",
+            "max_value": "1.0",
+            "delta_flag": false,
+            "unitref":""
+        }
+    ],
+    "component_definition": []
+}
